@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    tools:context=".MainActivity">
+
+
+    <EditText
+        android:id="@+id/et1"
+        android:layout_width="300dp"
+        android:ems="10"
+        android:hint="Number1"
+        android:inputType="number"
+        android:layout_marginTop="50dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:ignore="HardcodedText"
+        android:autofillHints="123" />
+    <EditText
+        android:id="@+id/et2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:hint="Number2"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintTop_toBottomOf="@+id/et1"
+        app:layout_constraintRight_toRightOf="@+id/et1"
+        app:layout_constraintLeft_toLeftOf="@+id/et1"
+        tools:ignore="HardcodedText"
+        android:autofillHints="123" />
+
+    <Button
+        android:id="@+id/bt1"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:text="Add"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@+id/et2"
+        app:layout_constraintRight_toRightOf="@+id/et2"
+        app:layout_constraintLeft_toLeftOf="@+id/et2"
+        tools:ignore="HardcodedText" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
