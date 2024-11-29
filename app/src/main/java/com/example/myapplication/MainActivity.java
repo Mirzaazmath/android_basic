@@ -1,24 +1,19 @@
 package com.example.myapplication;
-
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
 
-
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+// To use the Dropdown Menu we need to implements our class with  AdapterView.OnItemSelectedListener
+public class MainActivity extends AppCompatActivity  implements AdapterView.OnItemSelectedListener {
+// Here we are Creating the list of String
+String[] country={"India","Spain","Russia","USA"};
 
-public class MainActivity extends AppCompatActivity {
-    // Creating Variable for Accessing the element from  UI
-    Button closeButton;
-    // here we are creating AlertDialog.Builder to build the alert dialog
-    AlertDialog.Builder builder;
 
 
 
@@ -27,47 +22,26 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        // Assigning the value to our Variable  using Id
-        closeButton =findViewById(R.id.CloseBtn);
-        // Here we are instance of Alert dialog
-        builder=new AlertDialog.Builder(this);
-       // Here we are Add Listener to Our Close Button
-        closeButton.setOnClickListener((v)->{
-            // here we are setting our message into out alert dialog
-            builder.setMessage("Do you want to Close the App ?")
-                    // Here we are setting weather our alert dialog is cancelable or not
-                    .setCancelable(false).
-                    // Here we are adding yes button to our alert dialog and also adding the listener to perform some tasks
-                    setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int id) {
-                    // if we use   finish(); it will close the entire application
-                   // finish();
-                    // here we are closing the alert dialog
-                    dialog.cancel();
-                    // here we are displaying the toast message
-                    Toast.makeText(getApplicationContext(),"You have Pressed Yes", Toast.LENGTH_LONG).show();
+        //Getting the instance of Spinner and applying OnItemSelectedListener on it
+        Spinner spin =  findViewById(R.id.spiner);
+        spin.setOnItemSelectedListener(this);
+       //Creating the ArrayAdapter instance having the country list
+        ArrayAdapter aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,country);
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-                }
-                        // Here we are adding yes button to our alert dialog and also adding the listener to perform some tasks
-            }).setNegativeButton("No", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    // here we are closing the alert dialog
-                    dialog.cancel();
-                    // here we are displaying the toast message
-                    Toast.makeText(getApplicationContext(),"You have Pressed No", Toast.LENGTH_LONG).show();
-                }
-                        // Here we are adding Title of our alert dialog
-            }).setTitle("Android Alert Example");
-           // here we are creating the alert dialog
-            AlertDialog alert = builder.create();
-            // here we are showing the alert dialog
-            alert.show();
+        //Setting the ArrayAdapter data on the Spinner
+        spin.setAdapter(aa);
 
-        });
 
     }
+    //Performing action onItemSelected and onNothing selected
 
+    public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
+        Toast.makeText(getApplicationContext(),country[position] , Toast.LENGTH_LONG).show();
+    }
+    @Override
+    public void onNothingSelected(AdapterView<?> arg0) {
+        // TODO Auto-generated method stub
+    }
 
 }
