@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity  implements AdapterView.OnItemSelectedListener {
 // Here we are Creating the list of String
 String[] country={"India","Spain","Russia","USA"};
+String selectedCountry = "";
 
 
 
@@ -37,7 +38,9 @@ String[] country={"India","Spain","Russia","USA"};
     //Performing action onItemSelected and onNothing selected
 
     public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
+        selectedCountry=country[position];
         Toast.makeText(getApplicationContext(),country[position] , Toast.LENGTH_LONG).show();
+        System.out.println(selectedCountry);
     }
     @Override
     public void onNothingSelected(AdapterView<?> arg0) {
