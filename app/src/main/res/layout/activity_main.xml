@@ -12,8 +12,8 @@
     android:padding="10dp">
 
 
-    <DatePicker
-        android:id="@+id/date1"
+    <TimePicker
+        android:id="@+id/time1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="-/-/-"
-        app:layout_constraintTop_toBottomOf="@+id/date1"
+        app:layout_constraintTop_toBottomOf="@+id/time1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 
@@ -37,7 +37,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txt1"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginTop="100dp"
-        android:text="Change Date"
+        android:text="Change Time"
         app:layout_constraintRight_toRightOf="parent"/>
 
 

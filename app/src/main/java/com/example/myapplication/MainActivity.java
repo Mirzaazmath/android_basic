@@ -1,8 +1,9 @@
 package com.example.myapplication;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.DatePicker;
+
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
     // Created Variable
-    DatePicker datePicker;
+    TimePicker timePicker;
     TextView textView;
      Button button;
 
@@ -26,24 +27,23 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
         // Assigning value to variable based on id
-        datePicker = findViewById(R.id.date1);
+        timePicker = findViewById(R.id.time1);
         textView= findViewById(R.id.txt1);
         button = findViewById(R.id.btn1);
       // Adding Listener
         button.setOnClickListener((v)->{
-            textView.setText("Selected Date :"+ getDate());
+            textView.setText("Selected Time : "+ getTime());
         });
 
     }
 
-    public String getDate(){
+    public String getTime(){
         StringBuilder builder =new StringBuilder();
-        // Getting Year
-        builder.append(datePicker.getYear()).append("/");
-        // Getting Month
-        builder.append(datePicker.getMonth()+1).append("/");
-        // Getting Day
-        builder.append(datePicker.getDayOfMonth());
+        // Getting Hour
+        builder.append(timePicker.getHour()).append(":");
+        // Getting Minute
+        builder.append(timePicker.getMinute());
+        // Returning String
         return builder.toString();
 
     }
