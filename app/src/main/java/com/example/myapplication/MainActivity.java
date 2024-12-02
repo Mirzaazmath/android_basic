@@ -1,19 +1,20 @@
 package com.example.myapplication;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.ListView;
-import android.widget.RatingBar;
-import android.widget.Toast;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+// Note:
+//Tto Use WebView we need to Pass Internet permission in android manifest file
 
 
 public class MainActivity extends AppCompatActivity {
-    RatingBar ratingBar;
-    Button button;
+// Created a variable
+WebView webView;
 
 
     @Override
@@ -21,23 +22,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        ratingBar = findViewById(R.id.rb);
-        button=findViewById(R.id.btn);
+        // Find UI element by Id
+        webView = findViewById(R.id.web1);
+        // Here we are enabling javaScript
+        webView.getSettings().setJavaScriptEnabled(true);
+        // Here we are Setting setWebViewClient setWebViewClient to use the web with our app
+        // if we don't use this then everytime we click on webPage it will open in browser
+        webView.setWebViewClient(new WebViewClient());
+        // Loading the website
+        webView.loadUrl("https://www.javatpoint.com/");
 
-        addListnerToButton();
+
+
+
 
 
     }
-    public  void  addListnerToButton(){
 
-        button.setOnClickListener((v)->{
-
-            String rating = String.valueOf(ratingBar.getRating());
-
-            Toast.makeText(getApplicationContext(), rating, Toast.LENGTH_SHORT).show();
-
-        });
-    }
 
 
 
