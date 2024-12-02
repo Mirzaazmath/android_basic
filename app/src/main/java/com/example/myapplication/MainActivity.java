@@ -1,7 +1,9 @@
 package com.example.myapplication;
 import android.os.Bundle;
-import android.widget.SeekBar;
-import android.widget.Toast;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.TextView;
+
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,9 +11,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 public class MainActivity extends AppCompatActivity {
+    // Created Variable
+    DatePicker datePicker;
+    TextView textView;
+     Button button;
 
-SeekBar seekBar;
-Toast m_currentToast;
+
+
 
 
     @Override
@@ -19,39 +25,29 @@ Toast m_currentToast;
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        seekBar = findViewById(R.id.seekbar1);
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
-//                Toast.makeText(MainActivity.this, "Progress :"+progress, Toast.LENGTH_SHORT).show();
-                showToast(progress);
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-               // Toast.makeText(MainActivity.this, "Progress Starts", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-               // Toast.makeText(MainActivity.this, "Progress Ends", Toast.LENGTH_SHORT).show();
-
-            }
+        // Assigning value to variable based on id
+        datePicker = findViewById(R.id.date1);
+        textView= findViewById(R.id.txt1);
+        button = findViewById(R.id.btn1);
+      // Adding Listener
+        button.setOnClickListener((v)->{
+            textView.setText("Selected Date :"+ getDate());
         });
 
+    }
+
+    public String getDate(){
+        StringBuilder builder =new StringBuilder();
+        // Getting Year
+        builder.append(datePicker.getYear()).append("/");
+        // Getting Month
+        builder.append(datePicker.getMonth()+1).append("/");
+        // Getting Day
+        builder.append(datePicker.getDayOfMonth());
+        return builder.toString();
 
     }
-    void showToast(int text)
-    {
-        if(m_currentToast != null)
-        {
-            m_currentToast.cancel();
-        }
-        m_currentToast = Toast.makeText(this, "Progress : "+text, Toast.LENGTH_LONG);
-        m_currentToast.show();
 
-    }
 
 
 
