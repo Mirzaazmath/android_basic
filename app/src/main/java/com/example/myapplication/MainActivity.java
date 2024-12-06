@@ -1,4 +1,5 @@
 package com.example.myapplication;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
+    Button shareButton;
 
 
 
@@ -22,20 +24,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        // Here we are creating one Intent that act as navigator and passing context and Activity (where you want to navigate)
-        Intent navigatorIntent = new Intent(this, SecondActivity.class);
-        Button btn= findViewById(R.id.btn1);
-        // here we are Creating an object to pass to another activity
-        House modelData= new House(1000,"Hyderabd",false,new ArrayList<>());
-        // here we are creating OnClickListener
-        btn.setOnClickListener((v)->{
-            // here we are putting some data to another screen
-            navigatorIntent.putExtra("val1","My Name is Khan");
-            navigatorIntent.putExtra("val2","My Name is Mirza");
-            navigatorIntent.putExtra("model",modelData);
+        shareButton = findViewById(R.id.shareBtn1);
+        shareButton.setOnClickListener((v -> {
+            // here we are creating a new intent for Share
+            Intent shareIntent=new Intent(Intent.ACTION_SEND);
+            //  here we are setting type
+            shareIntent.setType("text/Plain");
+            shareIntent.putExtra(Intent.EXTRA_SUBJECT,"Insert Subject here");
+            String app_url = " https://play.google.com/store/apps/details?id=my.example.javatpoint";
+            // here we are add url to our share intent
+            shareIntent.putExtra(android.content.Intent.EXTRA_TEXT,app_url);
             // here we are starting the intent
-            startActivity(navigatorIntent);
-        });
+            startActivity(Intent.createChooser(shareIntent, "Share via"));
+
+        }));
+
+
 
     }
 
