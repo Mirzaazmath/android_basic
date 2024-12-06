@@ -11,12 +11,7 @@ import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
-    Button shareButton;
-
-
-
-
-
+    Button startBtn,stopBtn,nextBtn;
 
 
     @Override
@@ -24,20 +19,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        shareButton = findViewById(R.id.shareBtn1);
-        shareButton.setOnClickListener((v -> {
-            // here we are creating a new intent for Share
-            Intent shareIntent=new Intent(Intent.ACTION_SEND);
-            //  here we are setting type
-            shareIntent.setType("text/Plain");
-            shareIntent.putExtra(Intent.EXTRA_SUBJECT,"Insert Subject here");
-            String app_url = " https://play.google.com/store/apps/details?id=my.example.javatpoint";
-            // here we are add url to our share intent
-            shareIntent.putExtra(android.content.Intent.EXTRA_TEXT,app_url);
-            // here we are starting the intent
-            startActivity(Intent.createChooser(shareIntent, "Share via"));
+        nextBtn = findViewById(R.id.next);
+        startBtn = findViewById(R.id.start);
+        stopBtn = findViewById(R.id.stop);
+        // Here we are Creating the navigatorIntent
+        Intent navigatorIntent=new Intent(getApplicationContext(), SecondActivity.class);
+        nextBtn.setOnClickListener((v)-> {
+            startActivity(navigatorIntent);
+        });
 
-        }));
+        startBtn.setOnClickListener((v)-> {
+            // Here we are Starting the service that we have created
+           startService(new Intent(this,MyService.class));
+        });
+        stopBtn.setOnClickListener((v)-> {
+             // Here we are Stopping the service that we have created
+            stopService(new Intent(this, MyService.class));
+        });
 
 
 
